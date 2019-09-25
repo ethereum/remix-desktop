@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3-beta.2",
+  "version": "1.0.3-beta.3",
   "name": "remix-desktop",
   "description": "",
   "main": "main.js",
@@ -28,8 +28,13 @@
   },
   "build": {
     "productName": "Remix IDE",
-    "appId": "org.ethereum.remix-desktop",
+    "appId": "org.ethereum.remix-ide",
     "asar": false,
+    "files": [
+      "main.js",
+      "*.asar",
+      "*.zip"
+    ],
     "mac": {
       "category": "public.app-category.productivity",
       "target": [
