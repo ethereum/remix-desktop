@@ -120,7 +120,7 @@ const template = [
       {
         label: 'Remix in StackExchange.com',
         click: async () => {
-          shell.openExternal('https://ethereum.stackexchange.com/?tags=remix')
+          shell.openExternal('https://ethereum.stackexchange.com/questions/tagged/remix')
         }
       },
       {
