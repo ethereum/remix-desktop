@@ -1,5 +1,5 @@
-module.exports = (remixd, folder) => {
-    console.log('set folder', folder, remixd.services.sharedFolder.sharedFolder)
-    remixd.services.sharedFolder.sharedFolder(folder, false)
-    remixd.services.sharedFolder.setupNotifications(folder)
+module.exports = (sharedFolderClient, folder) => {
+    console.log('set folder', folder, sharedFolderClient.sharedFolder)
+    sharedFolderClient.sharedFolder(folder, false)
+    sharedFolderClient.setupNotifications(folder)
 }

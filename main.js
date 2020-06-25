@@ -16,6 +16,7 @@ const updater = new AppManager({
   auto: true,
   electron: true
 })
+const sharedFolderClient = new remixd.services.sharedFolder()
 
 function createWindow () {
   let win = new BrowserWindow({
@@ -26,7 +27,7 @@ function createWindow () {
     },
     icon: path.join(__dirname, 'build/icon.png')
   })
-  applicationMenu(remixd)
+  applicationMenu(sharedFolderClient)
   win.webContents.on('new-window', function(e, url) {
     e.preventDefault();
     shell.openExternal(url);
@@ -42,9 +43,14 @@ app.on('ready', () => {
 let remixdStart = () => {
   const remixIdeUrl = 'package://a7df6d3c223593f3550b35e90d7b0b1f.mod'
   console.log('start shared folder service')
-  let router = new remixd.Router(65520, remixd.services.sharedFolder, { remixIdeUrl }, (webSocket) => {
-    console.log('set websocket')
-    remixd.services.sharedFolder.setWebSocket(webSocket)
-  })
-  router.start()
+  try {
+    const websocketHandler = new remixd.Websocket(65520, { remixIdeUrl }, sharedFolderClient)
+
+    websocketHandler.start((ws) => {
+      console.log('set websocket')
+      sharedFolderClient.setWebSocket(ws)
+    })
+  } catch (error) {
+    throw new Error(error)
+  }
 }
