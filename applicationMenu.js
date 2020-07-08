@@ -3,7 +3,7 @@ const os = require('os')
 const selectFolder = require('./selectFolder')
 const setFolder = require('./setFolder')
 
-module.exports = (remixd) => {
+module.exports = (sharedFolderClient) => {
 
 const isMac = process.platform === 'darwin'
 
@@ -31,7 +31,7 @@ const template = [
         label: 'Open Folder',
         click: async () => {
           selectFolder().then((folder) => {
-            setFolder(remixd, folder)
+            setFolder(sharedFolderClient, folder)
           }).catch(console.log)
         }
       },
