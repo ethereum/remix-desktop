@@ -72,6 +72,6 @@
   },
   "dependencies": {
     "@philipplgh/electron-app-manager": "^0.55.0",
-    "remixd": "^0.2.3-alpha.1"
+    "remixd": "^0.2.3-alpha.3"
   }
 }
