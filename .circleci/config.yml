@@ -62,7 +62,7 @@ jobs:
 
   build-win:
     docker:
-      - image: electronuserland/builder:wine
+      - image: electronuserland/builder:wine-01.19
     environment:
       GRID_ENV: win
     working_directory: ~/repo
