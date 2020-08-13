@@ -1,5 +1,5 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.8",
   "name": "remix-ide",
   "description": "Remix - Ethereum IDE",
   "main": "main.js",

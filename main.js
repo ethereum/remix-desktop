@@ -32,7 +32,7 @@ function createWindow () {
     e.preventDefault();
     shell.openExternal(url);
   })
-  win.loadURL('package://github.com/ethereum/remix-ide')
+  win.loadURL('package://github.com/ethereum/remix-project')
 }
 
 app.on('ready', () => {
