@@ -41,7 +41,7 @@ app.on('ready', () => {
 })
 
 let remixdStart = () => {
-  const remixIdeUrl = 'package://a7df6d3c223593f3550b35e90d7b0b1f.mod'
+  const remixIdeUrl = 'package://6fd22d6fe5549ad4c4d8fd3ca0b7816b.mod'
   console.log('start shared folder service')
   try {
     const websocketHandler = new remixd.Websocket(65520, { remixIdeUrl }, sharedFolderClient)
