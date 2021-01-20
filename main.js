@@ -43,8 +43,8 @@ function createWindow () {
   let hashes = {}
   win.webContents.session.webRequest.onBeforeRequest(filter, (details, callback) => {
     let { url } = details;
-    var reg = /dyn.plugin.remixproject.org\/ipfs\/(.*)/
-    var regResult = reg.exec(url)
+    let reg = /dyn.plugin.remixproject.org\/ipfs\/(.*)/
+    let regResult = reg.exec(url)
     const hash = regResult[1]
     hashes[hash] = url
     url = `http://localhost:5001/ipfs/${regResult[1]}`      
