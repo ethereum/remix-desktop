@@ -1,4 +1,4 @@
-const remixd = require('remixd')
+const remixd = require('@remix-project/remixd')
 const path = require('path')
 const os = require('os')
 const IPFS = require('ipfs')
@@ -7,10 +7,12 @@ const IPFSGateway = require('ipfs-http-gateway')
 const { version } = require('./package.json')
 const applicationMenu = require('./applicationMenu')
 const { app, BrowserWindow, shell } = require('electron')
-const { AppManager, registerPackageProtocol } = require('@philipplgh/electron-app-manager')
+const { AppManager, registerPackageProtocol } = require('electron-app-manager')
 
 const cacheDir = path.join(os.homedir(), '.cache_remix_ide')
 registerPackageProtocol(cacheDir)
+
+const remixIdeUrl = 'package://6fd22d6fe5549ad4c4d8fd3ca0b7816b.mod'
 
 console.log('running', version)
 const updater = new AppManager({
@@ -18,7 +20,6 @@ const updater = new AppManager({
   auto: true,
   electron: true
 })
-const sharedFolderClient = new remixd.services.sharedFolder()
 
 function createWindow () {
   let win = new BrowserWindow({
@@ -29,13 +30,12 @@ function createWindow () {
     },
     icon: path.join(__dirname, 'build/icon.png')
   })
-  applicationMenu(sharedFolderClient)
   win.webContents.on('new-window', function(e, url) {
     e.preventDefault();
     shell.openExternal(url);
   })
   win.loadURL('package://github.com/ethereum/remix-project')
-
+  
   // Modify the user agent for all requests to the following urls.
   const filter = {
     urls: ['https://*.dyn.plugin.remixproject.org/ipfs/*']
@@ -55,7 +55,7 @@ function createWindow () {
   })  
     
   win.webContents.session.webRequest.onErrorOccurred((details) => {
-    console.error(details)
+    // console.error(details)
   })
 }
 
@@ -65,16 +65,55 @@ app.on('ready', () => {
   ipfsStart()
 })
 
-let remixdStart = () => {
-  const remixIdeUrl = 'package://6fd22d6fe5549ad4c4d8fd3ca0b7816b.mod'
-  console.log('start shared folder service')
-  try {
-    const websocketHandler = new remixd.Websocket(65520, { remixIdeUrl }, sharedFolderClient)
+let sharedFolderClient = new remixd.services.sharedFolder()
+let gitClient = new remixd.services.GitClient() 
+const services = {
+  git: () => { 
+    gitClient.options.customApi = {}
+    return gitClient
+  },
+  folder: () => { 
+    sharedFolderClient.options.customApi = {}
+    return sharedFolderClient
+  }
+}
 
-    websocketHandler.start((ws) => {
-      console.log('set websocket')
-      sharedFolderClient.setWebSocket(ws)
+applicationMenu((folder) => {
+  console.log('set folder', folder)
+  sharedFolderClient.sharedFolder(folder, false)
+  sharedFolderClient.setupNotifications(folder)
+  gitClient.sharedFolder(folder, false)
+})
+
+const ports = {
+  git: 65521,
+  folder: 65520
+}
+
+function startService (service, callback) {
+  try {
+    const socket = new remixd.Websocket(ports[service], { remixIdeUrl }, () => services[service]())
+    socket.start(callback)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+let remixdStart = () => {
+  console.log('start shared folder service')
+  const currentFolder = process.cwd()
+  try {
+    startService('folder', (ws, client) => {
+      client.setWebSocket(ws)
+      client.sharedFolder(currentFolder, false)
+      client.setupNotifications(currentFolder)
     })
+    
+    startService('git', (ws, client) => {
+      client.setWebSocket(ws)
+      client.sharedFolder(currentFolder, false)
+    })
+    
   } catch (error) {
     throw new Error(error)
   }
