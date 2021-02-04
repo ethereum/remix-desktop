@@ -1,5 +1,5 @@
 {
-  "version": "1.0.8",
+  "version": "1.1.0",
   "name": "remix-ide",
   "description": "Remix - Ethereum IDE",
   "main": "main.js",
@@ -71,9 +71,9 @@
     }
   },
   "dependencies": {
-    "@philipplgh/electron-app-manager": "^0.55.0",
+    "electron-app-manager": "0.57.0",
     "ipfs": "^0.52.2",
     "ipfs-http-gateway": "^0.1.3",
-    "remixd": "^0.2.3-alpha.4"
+    "@remix-project/remixd": "^0.3.2"
   }
 }

@@ -1,7 +1,6 @@
 const {Menu, shell, app} = require('electron')
 const os = require('os')
 const selectFolder = require('./selectFolder')
-const setFolder = require('./setFolder')
 
 module.exports = (sharedFolderClient) => {
 
@@ -31,7 +30,7 @@ const template = [
         label: 'Open Folder',
         click: async () => {
           selectFolder().then((folder) => {
-            setFolder(sharedFolderClient, folder)
+            sharedFolderClient(folder)
           }).catch(console.log)
         }
       },
