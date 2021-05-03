@@ -2,7 +2,7 @@ const {Menu, shell, app} = require('electron')
 const os = require('os')
 const selectFolder = require('./selectFolder')
 
-module.exports = (sharedFolderClient) => {
+module.exports = (outdatedVersion, sharedFolderClient) => {
 
 const isMac = process.platform === 'darwin'
 
@@ -138,7 +138,19 @@ const template = [
     ]
   }
 ]
-
+if (outdatedVersion) {
+  template.push({
+    label: 'New Release Available',
+    submenu: [
+      {
+        label: 'Remix Desktop release page',
+        click: async () => {
+          shell.openExternal('https://github.com/ethereum/remix-desktop/releases')
+        }
+      },
+    ]
+  })
+}
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu) 
 

@@ -1,6 +1,8 @@
 const remixd = require('@remix-project/remixd')
 const path = require('path')
 const os = require('os')
+const fetch = require('node-fetch')
+const semver = require('semver')
 const IPFS = require('ipfs')
 const IPFSGateway = require('ipfs-http-gateway')
 
@@ -14,7 +16,24 @@ registerPackageProtocol(cacheDir)
 
 const remixIdeUrl = 'package://6fd22d6fe5549ad4c4d8fd3ca0b7816b.mod'
 
-console.log('running', version)
+async function warnLatestVersion (current) {
+  const res = await fetch('https://api.github.com/repos/ethereum/remix-desktop/releases/latest')
+  let latest = (await res.json()).tag_name
+  latest = latest.indexOf('v') === 0 ? latest.replace('v', '') : latest
+  let ret = ''
+  console.log(latest, current)
+  if (semver.eq(latest, current)) {
+    console.log('\x1b[32m%s\x1b[0m', `[INFO] you are using the latest version ${latest}`)
+    ret = 'OK'
+  } else if (semver.gt(latest, current)) {
+    console.log('\x1b[33m%s\x1b[0m', `[WARN] latest version of remix-desktop is ${latest}, you are using ${current}`)
+    console.log('\x1b[33m%s\x1b[0m', `[WARN] please download the latest version:`)
+    console.log('\x1b[33m%s\x1b[0m', `[WARN] https://github.com/ethereum/remix-desktop/releases`)
+    ret = 'OUTDATED'
+  }
+  return ret
+}
+
 const updater = new AppManager({
   repository: 'https://github.com/ethereum/remix-desktop',
   auto: true,
@@ -59,12 +78,6 @@ function createWindow () {
   })
 }
 
-app.on('ready', () => {
-  remixdStart()
-  createWindow()
-  ipfsStart()
-})
-
 let sharedFolderClient = new remixd.services.sharedFolder()
 let gitClient = new remixd.services.GitClient() 
 const services = {
@@ -78,12 +91,22 @@ const services = {
   }
 }
 
-applicationMenu((folder) => {
-  console.log('set folder', folder)
-  sharedFolderClient.sharedFolder(folder, false)
-  sharedFolderClient.setupNotifications(folder)
-  gitClient.sharedFolder(folder, false)
-})
+const setupApplicationMenu = async () => {
+  let status = ""
+  try {
+    status = await warnLatestVersion(version)
+  } catch (e) {
+    console.log('unable to verify latest version')
+    console.log(e)
+  }
+  applicationMenu(status === 'OUTDATED', (folder) => {
+    console.log('set folder', folder)
+    sharedFolderClient.sharedFolder(folder, false)
+    sharedFolderClient.setupNotifications(folder)
+    gitClient.sharedFolder(folder, false)
+  })
+}
+
 
 const ports = {
   git: 65521,
@@ -139,3 +162,10 @@ let ipfsStart = async () => {
     console.error(err)
   }
 }
+
+app.on('ready', () => {
+  setupApplicationMenu()
+  remixdStart()
+  createWindow()
+  ipfsStart()
+})
