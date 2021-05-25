@@ -100,7 +100,6 @@ const setupApplicationMenu = async () => {
     console.log(e)
   }
   applicationMenu(status === 'OUTDATED', (folder) => {
-    console.log('set folder', folder)
     sharedFolderClient.sharedFolder(folder, false)
     sharedFolderClient.setupNotifications(folder)
     gitClient.sharedFolder(folder, false)
