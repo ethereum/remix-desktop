@@ -48,8 +48,7 @@ aliases:
       # libp2p uses by default ursa-optional, libp2p fails using the ursa-optional built files. 
       # removing ursa-optional allows libp2p to fallback to "keypair": https://github.com/libp2p/js-libp2p-crypto/pull/128/files#diff-3544cb4008be1bc81ba3bc70fbb55745a3343712bf391c316b21c4548b194501R23
       # remix-desktop issue: https://github.com/ethereum/remix-desktop/issues/40
-      - run: rm -rf release/*-unpacked/resources/app/node_modules/ursa-optional
-      - run: rm -rf release/mac/resources/app/node_modules/ursa-optional
+      - run: rm -rf node_modules/ursa-optional
       # - *test_e2e
       - *run_script
       # - *save_modules_cache
