@@ -1,4 +1,5 @@
-const remixd = require('@remix-project/remixd')
+import * as fs from 'fs-extra'
+import { services, Websocket, utils } from '@remix-project/remixd'
 const path = require('path')
 const os = require('os')
 const fetch = require('node-fetch')
@@ -78,12 +79,17 @@ function createWindow () {
   })
 }
 
-let sharedFolderClient = new remixd.services.sharedFolder()
-let gitClient = new remixd.services.GitClient() 
+let sharedFolderClient = new services.sharedFolder()
+let slitherClient = new services.SlitherClient() 
+let hardhatClient = new services.HardhatClient() 
 const services = {
-  git: () => { 
-    gitClient.options.customApi = {}
-    return gitClient
+  hardhat: () => { 
+    hardhatClient.options.customApi = {}
+    return hardhatClient
+  },
+  slither: () => { 
+    slitherClient.options.customApi = {}
+    return slitherClient
   },
   folder: () => { 
     sharedFolderClient.options.customApi = {}
@@ -114,7 +120,7 @@ const ports = {
 
 function startService (service, callback) {
   try {
-    const socket = new remixd.Websocket(ports[service], { remixIdeUrl }, () => services[service]())
+    const socket = new Websocket(ports[service], { remixIdeUrl }, () => services[service]())
     socket.start(callback)
   } catch (e) {
     console.error(e)
@@ -127,14 +133,24 @@ let remixdStart = () => {
   try {
     startService('folder', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder, false)
+      client.sharedFolder(currentFolder)
       client.setupNotifications(currentFolder)
     })
     
-    startService('git', (ws, client) => {
+    startService('slither', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder, false)
+      client.sharedFolder(currentFolder)
     })
+
+    // Run hardhat service if a hardhat project is shared as folder
+    const hardhatConfigFilePath = utils.absolutePath('./', currentFolder) + '/hardhat.config.js'
+    const isHardhatProject = fs.existsSync(hardhatConfigFilePath)
+    if (isHardhatProject) {
+      startService('hardhat', (ws, client) => {
+        client.setWebSocket(ws)
+        client.sharedFolder(currentFolder)
+      })
+    }
     
   } catch (error) {
     throw new Error(error)
