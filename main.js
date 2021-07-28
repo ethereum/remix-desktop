@@ -109,19 +109,23 @@ const setupApplicationMenu = async () => {
   applicationMenu(status === 'OUTDATED', (folder) => {
     sharedFolderClient.sharedFolder(folder, false)
     sharedFolderClient.setupNotifications(folder)
-    gitClient.sharedFolder(folder, false)
+    slitherClient.sharedFolder(folder)
+    hardhatClient.sharedFolder(folder)
   })
 }
 
 
+// Similar object is also defined in websocket.ts
 const ports = {
   git: 65521,
+  hardhat: 65522,
+  slither: 65523,
   folder: 65520
 }
 
 function startService (service, callback) {
   try {
-    const socket = new remix.Websocket(ports[service], { remixIdeUrl }, () => services[service]())
+    const socket = new remixd.Websocket(ports[service], { remixIdeUrl }, () => services[service]())
     socket.start(callback)
   } catch (e) {
     console.error(e)
@@ -143,15 +147,10 @@ let remixdStart = () => {
       client.sharedFolder(currentFolder)
     })
 
-    // Run hardhat service if a hardhat project is shared as folder
-    const hardhatConfigFilePath = utils.absolutePath('./', currentFolder) + '/hardhat.config.js'
-    const isHardhatProject = fs.existsSync(hardhatConfigFilePath)
-    if (isHardhatProject) {
-      startService('hardhat', (ws, client) => {
-        client.setWebSocket(ws)
-        client.sharedFolder(currentFolder)
-      })
-    }
+    startService('hardhat', (ws, client) => {
+      client.setWebSocket(ws)
+      client.sharedFolder(currentFolder)
+    })
     
   } catch (error) {
     throw new Error(error)
