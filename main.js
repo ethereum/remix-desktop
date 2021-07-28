@@ -1,5 +1,6 @@
-import * as fs from 'fs-extra'
-import { services, Websocket, utils } from '@remix-project/remixd'
+const fs = require('fs')
+const remixd = require('@remix-project/remixd')
+const utils = remixd.utils
 const path = require('path')
 const os = require('os')
 const fetch = require('node-fetch')
@@ -79,9 +80,9 @@ function createWindow () {
   })
 }
 
-let sharedFolderClient = new services.sharedFolder()
-let slitherClient = new services.SlitherClient() 
-let hardhatClient = new services.HardhatClient() 
+let sharedFolderClient = new remixd.services.sharedFolder()
+let slitherClient = new remixd.services.SlitherClient() 
+let hardhatClient = new remixd.services.HardhatClient() 
 const services = {
   hardhat: () => { 
     hardhatClient.options.customApi = {}
@@ -120,7 +121,7 @@ const ports = {
 
 function startService (service, callback) {
   try {
-    const socket = new Websocket(ports[service], { remixIdeUrl }, () => services[service]())
+    const socket = new remix.Websocket(ports[service], { remixIdeUrl }, () => services[service]())
     socket.start(callback)
   } catch (e) {
     console.error(e)
