@@ -1,5 +1,5 @@
 const fs = require('fs')
-const remixd = require('@remix-project/remixd')
+const remixd = require('@remix-project/remixd/src')
 const utils = remixd.utils
 const path = require('path')
 const os = require('os')
@@ -16,7 +16,7 @@ const { AppManager, registerPackageProtocol } = require('electron-app-manager')
 const cacheDir = path.join(os.homedir(), '.cache_remix_ide')
 registerPackageProtocol(cacheDir)
 
-const remixIdeUrl = 'package://6fd22d6fe5549ad4c4d8fd3ca0b7816b.mod'
+const remixIdeUrl = 'http://localhost:8080'
 
 async function warnLatestVersion (current) {
   const res = await fetch('https://api.github.com/repos/ethereum/remix-desktop/releases/latest')
@@ -55,7 +55,7 @@ function createWindow () {
     e.preventDefault();
     shell.openExternal(url);
   })
-  win.loadURL('package://github.com/ethereum/remix-project')
+  win.loadURL('http://localhost:8080')
   
   // Modify the user agent for all requests to the following urls.
   const filter = {
