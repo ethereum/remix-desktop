@@ -37,7 +37,7 @@ async function warnLatestVersion (current) {
 }
 
 const updater = new AppManager({
-  repository: 'https://github.com/ethereum/remix-desktop',
+  repository: 'https://remix-beta.ethereum.org/',
   auto: true,
   electron: true
 })
@@ -55,7 +55,7 @@ function createWindow () {
     e.preventDefault();
     shell.openExternal(url);
   })
-  win.loadURL('https://remix-alpha.ethereum.org/')
+  win.loadURL('https://remix-beta.ethereum.org/')
   
   // Modify the user agent for all requests to the following urls.
   const filter = {

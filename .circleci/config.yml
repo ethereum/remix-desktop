@@ -74,8 +74,9 @@ jobs:
     <<: *run_steps
 
   build-mac:
+    resource_class: xlarge
     macos:
-      xcode: 11.3.0
+      xcode: 13.1.0
     environment:
       GRID_ENV: mac
     working_directory: ~/repo
