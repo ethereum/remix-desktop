@@ -459,10 +459,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@remix-project/remixd@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.5.3.tgz#39b921764d01a6626279640c00d1e8d42621c582"
-  integrity sha512-3CXjWpCntEnZgoo+/HscUylJjGxzStiypwDu1UNaY9vSmn1+Acq6sd11LGeR6R6+4rxadG7ER+/sUdzYPfS/XA==
+"@remix-project/remixd@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.5.5.tgz#9775c9216750c57fe97d96c7c8dfcb3ff5e7b841"
+  integrity sha512-6aJAG9cR+ZPTjS2CLvQlk2obYpaiSuKuO2RkuOwmM1Srd1aRU8YY57jyWl6BofzNf3ewSeGS8KpaJDje5QE7Wg==
   dependencies:
     "@remixproject/plugin" "^0.3.11"
     "@remixproject/plugin-api" "^0.3.11"

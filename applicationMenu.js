@@ -1,5 +1,5 @@
 const {Menu, shell, app} = require('electron')
-const os = require('os')
+const config = require('./config')
 const selectFolder = require('./selectFolder')
 
 module.exports = (outdatedVersion, sharedFolderClient) => {
@@ -31,6 +31,7 @@ const template = [
         click: async () => {
           selectFolder().then((folder) => {
             sharedFolderClient(folder)
+            config.write({sharedFolder:folder})    
           }).catch(console.log)
         }
       },

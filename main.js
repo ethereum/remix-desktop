@@ -1,11 +1,11 @@
 const fs = require('fs')
 const remixd = require('@remix-project/remixd/src')
-const utils = remixd.utils
 const path = require('path')
 const os = require('os')
 const fetch = require('node-fetch')
 const semver = require('semver')
 const IPFS = require('ipfs')
+const config = require('./config')
 const IPFSGateway = require('ipfs-http-gateway')
 
 const { version } = require('./package.json')
@@ -16,7 +16,7 @@ const { AppManager, registerPackageProtocol } = require('electron-app-manager')
 const cacheDir = path.join(os.homedir(), '.cache_remix_ide')
 registerPackageProtocol(cacheDir)
 
-const remixIdeUrl = 'http://localhost:8080'
+const remixIdeUrl = 'https://ipfs.remixproject.org/ipfs/QmZF364rZunYDdVhaqpDtUckyMMRBD6pLW5PFgzmUsGKb4'
 
 async function warnLatestVersion (current) {
   const res = await fetch('https://api.github.com/repos/ethereum/remix-desktop/releases/latest')
@@ -55,7 +55,7 @@ function createWindow () {
     e.preventDefault();
     shell.openExternal(url);
   })
-  win.loadURL('http://localhost:8080')
+  win.loadURL('https://ipfs.remixproject.org/ipfs/QmZF364rZunYDdVhaqpDtUckyMMRBD6pLW5PFgzmUsGKb4')
   
   // Modify the user agent for all requests to the following urls.
   const filter = {
@@ -132,24 +132,37 @@ function startService (service, callback) {
   }
 }
 
+// return either current folder in client, or the one in cache or by default the os homedir
+function getFolder(client) {
+  if(client.currentSharedFolder) return client.currentSharedFolder
+  const cache = config.read()
+  if(cache){
+    try {
+      const folder = cache.sharedFolder
+      if(fs.existsSync(folder)) return folder
+    }catch(e){
+    }
+  }
+  return os.homedir()
+}
+
 let remixdStart = () => {
   console.log('start shared folder service')
-  const currentFolder = process.cwd()
   try {
     startService('folder', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder)
-      client.setupNotifications(currentFolder)
+      client.sharedFolder(getFolder(client))
+      client.setupNotifications(getFolder(client))
     })
     
     startService('slither', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder)
+      client.sharedFolder(getFolder(client))
     })
 
     startService('hardhat', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder)
+      client.sharedFolder(getFolder(client))
     })
     
   } catch (error) {
