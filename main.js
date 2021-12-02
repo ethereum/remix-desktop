@@ -16,7 +16,7 @@ const { AppManager, registerPackageProtocol } = require('electron-app-manager')
 const cacheDir = path.join(os.homedir(), '.cache_remix_ide')
 registerPackageProtocol(cacheDir)
 
-const remixIdeUrl = 'https://remix-alpha.ethereum.org/'
+const remixIdeUrl = 'https://remix-beta.ethereum.org/'
 
 async function warnLatestVersion (current) {
   const res = await fetch('https://api.github.com/repos/ethereum/remix-desktop/releases/latest')
@@ -37,7 +37,7 @@ async function warnLatestVersion (current) {
 }
 
 const updater = new AppManager({
-  repository: 'https://remix-beta.ethereum.org/',
+  repository: 'https://github.com/ethereum/remix-desktop',
   auto: true,
   electron: true
 })
