@@ -58,7 +58,7 @@ aliases:
 jobs:
   build:
     docker:
-      - image: electronuserland/builder:12
+      - image: electronuserland/builder:14
     environment:
       GRID_ENV: linux
     working_directory: ~/repo
