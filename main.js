@@ -16,7 +16,7 @@ const { AppManager, registerPackageProtocol } = require('electron-app-manager')
 const cacheDir = path.join(os.homedir(), '.cache_remix_ide')
 registerPackageProtocol(cacheDir)
 
-const remixIdeUrl = 'https://remix-beta.ethereum.org/'
+const remixIdeUrl = 'https://remix-alpha.ethereum.org/'
 
 async function warnLatestVersion (current) {
   const res = await fetch('https://api.github.com/repos/ethereum/remix-desktop/releases/latest')
@@ -55,7 +55,7 @@ function createWindow () {
     e.preventDefault();
     shell.openExternal(url);
   })
-  win.loadURL('https://remix-beta.ethereum.org/')
+  win.loadURL('https://remix-alpha.ethereum.org/')
   
   // Modify the user agent for all requests to the following urls.
   const filter = {

@@ -74,7 +74,7 @@ jobs:
 
   build-mac:
     macos:
-      xcode: 11.7.0
+      xcode: 13.1.0
     environment:
       GRID_ENV: mac
     working_directory: ~/repo
