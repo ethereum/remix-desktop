@@ -33,6 +33,7 @@ aliases:
   - &run_script
     run: 
       name: "Building app (deploy if on master)"
+      no_output_timeout: 30m
       command: | 
         if [[ "${CIRCLE_BRANCH}" == 'master' ]]; then
           yarn release --$GRID_ENV;
