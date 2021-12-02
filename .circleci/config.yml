@@ -25,7 +25,7 @@ aliases:
   #  run: node --version && yarn install
 
   - &install
-    run: node --version && npm install
+    run: yarn
 
   - &test_e2e
     run: yarn test:e2e -s
