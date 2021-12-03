@@ -1,11 +1,11 @@
 const fs = require('fs')
-const remixd = require('@remix-project/remixd')
-const utils = remixd.utils
+const remixd = require('@remix-project/remixd/src')
 const path = require('path')
 const os = require('os')
 const fetch = require('node-fetch')
 const semver = require('semver')
 const IPFS = require('ipfs')
+const config = require('./config')
 const IPFSGateway = require('ipfs-http-gateway')
 
 const { version } = require('./package.json')
@@ -132,24 +132,37 @@ function startService (service, callback) {
   }
 }
 
+// return either current folder in client, or the one in cache or by default the os homedir
+function getFolder(client) {
+  if(client.currentSharedFolder) return client.currentSharedFolder
+  const cache = config.read()
+  if(cache){
+    try {
+      const folder = cache.sharedFolder
+      if(fs.existsSync(folder)) return folder
+    }catch(e){
+    }
+  }
+  return os.homedir()
+}
+
 let remixdStart = () => {
   console.log('start shared folder service')
-  const currentFolder = process.cwd()
   try {
     startService('folder', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder)
-      client.setupNotifications(currentFolder)
+      client.sharedFolder(getFolder(client))
+      client.setupNotifications(getFolder(client))
     })
     
     startService('slither', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder)
+      client.sharedFolder(getFolder(client))
     })
 
     startService('hardhat', (ws, client) => {
       client.setWebSocket(ws)
-      client.sharedFolder(currentFolder)
+      client.sharedFolder(getFolder(client))
     })
     
   } catch (error) {

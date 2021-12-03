@@ -25,7 +25,7 @@ aliases:
   #  run: node --version && yarn install
 
   - &install
-    run: node --version && npm install
+    run: node --version && yarn
 
   - &test_e2e
     run: yarn test:e2e -s
@@ -33,6 +33,7 @@ aliases:
   - &run_script
     run: 
       name: "Building app (deploy if on master)"
+      no_output_timeout: 30m
       command: | 
         if [[ "${CIRCLE_BRANCH}" == 'master' ]]; then
           yarn release --$GRID_ENV;
@@ -58,7 +59,7 @@ aliases:
 jobs:
   build:
     docker:
-      - image: electronuserland/builder:10
+      - image: electronuserland/builder:14
     environment:
       GRID_ENV: linux
     working_directory: ~/repo
@@ -66,15 +67,16 @@ jobs:
 
   build-win:
     docker:
-      - image: electronuserland/builder:wine-01.19
+      - image: electronuserland/builder:wine
     environment:
       GRID_ENV: win
     working_directory: ~/repo
     <<: *run_steps
 
   build-mac:
+    resource_class: xlarge
     macos:
-      xcode: '10.0'
+      xcode: 13.1.0
     environment:
       GRID_ENV: mac
     working_directory: ~/repo
