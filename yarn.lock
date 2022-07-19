@@ -459,10 +459,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@remix-project/remixd@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.5.5.tgz#9775c9216750c57fe97d96c7c8dfcb3ff5e7b841"
-  integrity sha512-6aJAG9cR+ZPTjS2CLvQlk2obYpaiSuKuO2RkuOwmM1Srd1aRU8YY57jyWl6BofzNf3ewSeGS8KpaJDje5QE7Wg==
+"@remix-project/remixd@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.6.4.tgz#08aa3797bd48ffd5d3ec5be553636d3edaff3d88"
+  integrity sha512-IFFGUATqzBsVsyGs1ftF8WeFKLZ06vhiK9b3vhnIoduNt0k6lXdx1ty9sPORwcT1WD5Kgw4TeO0bwAR72udd5Q==
   dependencies:
     "@remixproject/plugin" "^0.3.11"
     "@remixproject/plugin-api" "^0.3.11"
@@ -2788,9 +2788,9 @@ fnv1a@^1.0.1:
   integrity sha1-kV4tbQI8Q9UiStn20qPEFW9XEvU=
 
 follow-redirects@^1.14.4:
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
-  integrity sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
 
 for-in@^1.0.2:
   version "1.0.2"
