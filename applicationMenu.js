@@ -1,8 +1,10 @@
 const {Menu, shell, app} = require('electron')
+const fs = require('fs')
+const path = require('path')
 const config = require('./config')
 const selectFolder = require('./selectFolder')
 
-module.exports = (outdatedVersion, sharedFolderClient) => {
+module.exports = (outdatedVersion, cacheDir, app, sharedFolderClient) => {
 
 const isMac = process.platform === 'darwin'
 
@@ -136,6 +138,14 @@ const template = [
         }
       },
       { role: 'toggledevtools' },
+      {
+        label: 'Clear the cache and restart Remix',
+        click: async () => {
+          deleteFolderRecursive(cacheDir)
+          app.relaunch()
+          app.exit(0)
+        }
+      },
     ]
   }
 ]
@@ -155,4 +165,25 @@ if (outdatedVersion) {
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu) 
 
+}
+
+const deleteFolderRecursive = function (directoryPath) {
+  try {
+    if (fs.existsSync(directoryPath)) {
+      fs.readdirSync(directoryPath).forEach((file, index) => {
+        const curPath = path.join(directoryPath, file);
+        if (fs.lstatSync(curPath).isDirectory()) {
+         // recurse
+          deleteFolderRecursive(curPath)
+        } else {
+          // delete file
+          fs.unlinkSync(curPath)
+        }
+      });
+      fs.rmdirSync(directoryPath)
+      console.log(directoryPath + ' deleted')
+    }
+  } catch (e) {
+    console.error(e)
+  }
 }
