@@ -106,7 +106,7 @@ const setupApplicationMenu = async () => {
     console.log('unable to verify latest version')
     console.log(e)
   }
-  applicationMenu(status === 'OUTDATED', (folder) => {
+  applicationMenu(status === 'OUTDATED', cacheDir, app, (folder) => {
     sharedFolderClient.sharedFolder(folder, false)
     sharedFolderClient.setupNotifications(folder)
     slitherClient.sharedFolder(folder)
