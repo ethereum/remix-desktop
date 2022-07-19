@@ -143,7 +143,10 @@ function getFolder(client) {
     }catch(e){
     }
   }
-  return os.homedir()
+  if (process.cwd()) {
+    return process.cwd()
+  } else 
+    return os.homedir()
 }
 
 let remixdStart = () => {
