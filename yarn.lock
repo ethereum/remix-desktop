@@ -459,10 +459,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@remix-project/remixd@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.5.5.tgz#9775c9216750c57fe97d96c7c8dfcb3ff5e7b841"
-  integrity sha512-6aJAG9cR+ZPTjS2CLvQlk2obYpaiSuKuO2RkuOwmM1Srd1aRU8YY57jyWl6BofzNf3ewSeGS8KpaJDje5QE7Wg==
+"@remix-project/remixd@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.6.4.tgz#08aa3797bd48ffd5d3ec5be553636d3edaff3d88"
+  integrity sha512-IFFGUATqzBsVsyGs1ftF8WeFKLZ06vhiK9b3vhnIoduNt0k6lXdx1ty9sPORwcT1WD5Kgw4TeO0bwAR72udd5Q==
   dependencies:
     "@remixproject/plugin" "^0.3.11"
     "@remixproject/plugin-api" "^0.3.11"
@@ -6168,10 +6168,10 @@ node-addon-api@^2.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-2.0.2.tgz#432cfa82962ce494b132e9d72a15b29f71ff5d32"
   integrity sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==
 
-node-fetch@^2.1.2, node-fetch@^2.6.0, node-fetch@^2.6.1:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.6.tgz#1751a7c01834e8e1697758732e9efb6eeadfaf89"
-  integrity sha512-Z8/6vRlTUChSdIgMa51jxQ4lrw/Jy5SOW10ObaA47/RElsAN2c5Pn8bTgFGWn/ibwzXTE8qwr1Yzx28vsecXEA==
+node-fetch@^2.1.2, node-fetch@^2.6.0, node-fetch@^2.6.1, node-fetch@^2.6.7:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
+  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
   dependencies:
     whatwg-url "^5.0.0"
 
