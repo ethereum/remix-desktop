@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/ethereum/remix-desktop#readme",
   "devDependencies": {
-    "electron": "6.0.9",
-    "electron-builder": "^21.2.0"
+    "electron": "20.0.3",
+    "electron-builder": "23.3.3"
   },
   "build": {
     "productName": "Remix IDE",
