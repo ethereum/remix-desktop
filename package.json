@@ -28,7 +28,7 @@
   "build": {
     "productName": "Remix IDE",
     "appId": "org.ethereum.remix-ide",
-    "asar": false,
+    "asar": true,
     "files": [
       "main.js",
       "selectFolder.js",
@@ -37,21 +37,29 @@
       "config.js",
       "build/icon.png",
       "*.asar",
-      "*.zip"
+      "*.zip",
+      "!**/node_modules/bcrypto/build/Release/secp256k1.a",
+      "!**/node_modules/bcrypto/build/Release/torsion.a"
     ],
     "mac": {
       "category": "public.app-category.productivity",
+      "darkModeSupport": true,
       "target": [
-        "zip",
-        "dmg"
-      ],
-      "darkModeSupport": true
+        {
+          "target": "default",
+          "arch": "universal"
+        }
+      ]
     },
+    "dmg": {
+			"writeUpdateInfo": false
+		},
     "nsis": {
       "createDesktopShortcut": "always",
       "allowToChangeInstallationDirectory": true,
       "oneClick": false,
-      "shortcutName": "Remix IDE"
+      "shortcutName": "Remix IDE",
+      "differentialPackage": false
     },
     "win": {
       "target": [
