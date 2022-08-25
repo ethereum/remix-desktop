@@ -29,7 +29,7 @@
   "build": {
     "productName": "Remix IDE",
     "appId": "org.ethereum.remix-ide",
-    "asar": false,
+    "asar": true,
     "files": [
       "main.js",
       "selectFolder.js",
