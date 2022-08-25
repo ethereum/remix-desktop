@@ -4,8 +4,7 @@
   "description": "Remix - Ethereum IDE",
   "main": "main.js",
   "scripts": {
-    "build": "tsc",
-    "start": "electron ./lib/main.js & cp package.json ./lib/",
+    "start": "electron .",
     "dist": "electron-builder",
     "release": "yarn run dist"
   },
@@ -75,7 +74,7 @@
   },
   "dependencies": {
     "@remix-project/remixd": "^0.6.4",
-    "electron-app-manager": "EthereumRemix/electron-app-manager",
+    "electron-app-manager": "EthereumRemix/electron-app-manager#remix-dep",
     "fs-extra": "^3.0.1",
     "ipfs": "^0.52.2",
     "ipfs-http-gateway": "^0.1.3",
