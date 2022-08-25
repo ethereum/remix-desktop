@@ -4,9 +4,7 @@ const path = require('path')
 const os = require('os')
 const fetch = require('node-fetch')
 const semver = require('semver')
-const IPFS = require('ipfs')
 const config = require('./config')
-const IPFSGateway = require('ipfs-http-gateway')
 
 const { version } = require('./package.json')
 const applicationMenu = require('./applicationMenu')
@@ -173,30 +171,8 @@ let remixdStart = () => {
   }
 }
 
-let ipfsStart = async () => {
-  try {
-    const repo = os.homedir() + '/.remix-ipfsnode'
-    const node = await IPFS.create({
-      repo,
-      config: {
-        Addresses: {
-          Gateway: `/ip4/127.0.0.1/tcp/5001`
-        }        
-      }
-    })
-    const gateway = new IPFSGateway(node)
-    const id = await node.id()
-    gateway.start()
-    console.log('ipfs node', id)
-    console.log('ipfs node repo', repo)
-  } catch (err) {
-    console.error(err)
-  }
-}
-
 app.on('ready', () => {
   setupApplicationMenu()
   remixdStart()
   createWindow()
-  ipfsStart()
 })
