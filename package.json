@@ -43,16 +43,22 @@
     "mac": {
       "category": "public.app-category.productivity",
       "target": [
-        "zip",
-        "dmg"
+        {
+          "target": "default",
+          "arch": "universal"
+        }
       ],
       "darkModeSupport": true
     },
+    "dmg": {
+			"writeUpdateInfo": false
+		},
     "nsis": {
       "createDesktopShortcut": "always",
       "allowToChangeInstallationDirectory": true,
       "oneClick": false,
-      "shortcutName": "Remix IDE"
+      "shortcutName": "Remix IDE",
+      "differentialPackage": false
     },
     "win": {
       "target": [
