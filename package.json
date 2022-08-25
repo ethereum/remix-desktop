@@ -44,8 +44,12 @@
       "category": "public.app-category.productivity",
       "target": [
         {
-          "target": "default",
-          "arch": "universal"
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64", "universal"]
         }
       ],
       "darkModeSupport": true
