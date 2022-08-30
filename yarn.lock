@@ -168,10 +168,10 @@
   dependencies:
     "@octokit/openapi-types" "^12.11.0"
 
-"@remix-project/remixd@^0.6.4":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.6.5.tgz#7e7f36d702f4df13391ea13883b9dbdadd343d01"
-  integrity sha512-B6a8n6K73jO0TP075/zJe/wsd1X5B9xBkjG2QnvOEa/wsQMbEAqkFKL6XujRGAaEmLgiuQxkqEMpg7O8CA7tLA==
+"@remix-project/remixd@^0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.6.6.tgz#91617d1f2d6eae83c7771c7791726d6c1ce5b6a0"
+  integrity sha512-PBiz5w88wzwN6WELM+4Xj0y6M46weNSC8bLuirdu50PIU78q5kZixOTm9+deJp1EckWgNs386lIzke0GrHoZOQ==
   dependencies:
     "@remixproject/plugin" "^0.3.11"
     "@remixproject/plugin-api" "^0.3.11"
@@ -1380,7 +1380,7 @@ electron-app-manager@EthereumRemix/electron-app-manager#remix-dep:
   dependencies:
     "@octokit/rest" "^16.27.0"
     electron-updater "4.1.2"
-    ethpkg EthereumRemix/ethpkg#v0.3.0
+    ethpkg "^0.3.0"
     openpgp "^4.4.5"
     semver "^5.6.0"
     tar-stream "^1.6.2"

@@ -45,18 +45,25 @@
       "target": [
         {
           "target": "zip",
-          "arch": ["x64", "arm64"]
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         },
         {
           "target": "dmg",
-          "arch": ["x64", "arm64", "universal"]
+          "arch": [
+            "x64",
+            "arm64",
+            "universal"
+          ]
         }
       ],
       "darkModeSupport": true
     },
     "dmg": {
-			"writeUpdateInfo": false
-		},
+      "writeUpdateInfo": false
+    },
     "nsis": {
       "createDesktopShortcut": "always",
       "allowToChangeInstallationDirectory": true,
@@ -83,7 +90,7 @@
     }
   },
   "dependencies": {
-    "@remix-project/remixd": "^0.6.4",
+    "@remix-project/remixd": "^0.6.6",
     "electron-app-manager": "EthereumRemix/electron-app-manager#remix-dep",
     "fs-extra": "^3.0.1",
     "latest-version": "^5.1.0",
