@@ -21,11 +21,11 @@ In Remix Desktop, you select a folder from the File menu (File -> Open Folder) t
 
 ![](remix-desktop-open.png)
 
-### Version control& folder capacity
+### Version control & folder capacity
 With Remix Desktop, version control is just like it would be with any other desktop IDE. Similarly the size of a workspace folder is limited by your computer's hard drive.  In Remix IDE - the web app, the size of a workspace folder is limited by the size of the browser's local storage. There are techniques for putting version control in the browser (like using remixd or the DGIT plugin), but these are work-arounds to inherent limitations of a browser. 
 
 ### Deploying to a public testnet with Injected Web3 & Metamask
-**Remix Desktop** does not have access to the Metamask - the browser plugin - so deploying to a public chain currently involves using the Wallet Connect plugin.  In contract, **Remix IDE - the web app** has easy access to the Metamask browser plugin.
+**Remix Desktop** does not have access to the Metamask - the browser plugin - so deploying to a public chain currently involves using the Wallet Connect plugin.  In contrast, **Remix IDE - the web app** has easy access to the Metamask browser plugin.
 
 ## Updates to Remix IDE & Updates to Remix Desktop
 Please check subscribe to our Twitter feed @EthereumRemix - so we can prompt you to download the latest version.  Remix Desktop is a wrapper of Remix IDE so Remix Desktop will automatically grab the latest version of Remix IDE.  You only need to download the new releases of Remix Desktop.  We also post announcements in our gitter chat: https://gitter.im/ethereum/remix
