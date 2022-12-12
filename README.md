@@ -11,6 +11,13 @@ To find out more about Remix IDE - please go to [ethereum/remix-project](https:/
 ### Download
 To download Remix Desktop, see releases: [https://github.com/ethereum/remix-desktop/releases](https://github.com/ethereum/remix-desktop/releases)
 
+Alternatively, if you are on an Arch Linux based distro you can install Remix Desktop directly from the AUR searching for the `remix-desktop` package.
+
+``` shell
+# Example using yay AUR helper
+yay -S remix-desktop
+```
+
 ## Differences between Remix Desktop & Remix IDE - the web app
 ### Accessing your hard drive
 **Remix IDE - the web app** works in a browser and without using [remixd](https://remix-ide.readthedocs.io/en/latest/remixd.html), it cannot access your computer's file system. Whereas with **Remix Desktop** accessing your filesystem is easy. 
