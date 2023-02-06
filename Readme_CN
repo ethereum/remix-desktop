@@ -1,0 +1,39 @@
+[![Join the chat at https://gitter.im/ethereum/remix](https://badges.gitter.im/ethereum/remix.svg)]
+(https://gitter.im/ethereum/remix?utm_source=badge&utm_medium=badge&utm_campaign=pr-
+badge&utm_content=badge)
+
+# Remix desktop 
+**Remix Desktop** 是 Remix IDE 的 Electron 版本。 它适用于 Linux、Windows 和 Mac。
+
+顾名思义，它是一个桌面应用程序 - 因此您可以无缝访问计算机文件系统上的文件。
+
+要了解有关 Remix IDE 的更多信息 - 请转到 [ethereum/remix-project](https://github.com/ethereum/remix-project) - 或查看它的运行情况，请转到 [remix.ethereum.org] （https://remix.ethereum.org）。
+
+
+### 下载
+要下载 Remix Desktop，请参阅版本：[https://github.com/ethereum/remix-desktop/releases](https://github.com/ethereum/remix-desktop/releases)
+
+## Remix Desktop 和 Remix IDE 之间的区别 - 网络应用程序
+### 访问你的硬盘
+**Remix IDE - Web 应用程序** 在浏览器中运行，不使用 [remixd](https://remix-ide.readthedocs.io/en/latest/remixd.html)，它无法访问您计算机的文件系统。 而使用 **Remix Desktop** 访问您的文件系统很容易。
+
+保存和访问保存在计算机上的文件是 Remix Desktop 的一大优势。
+
+在 Remix Desktop 中，您从文件菜单（文件 -> 打开文件夹）中选择一个文件夹，使其成为 **文件浏览器** 工作区中的活动文件夹。 转到文件 - >打开文件夹进行选择。
+
+![](remix-desktop-open.png)
+
+### 版本控制和文件夹容量
+使用 Remix Desktop，版本控制就像使用任何其他桌面 IDE 一样。 同样，工作区文件夹的大小受计算机硬盘驱动器的限制。 在 Remix IDE - 网络应用程序中，工作区文件夹的大小受浏览器本地存储大小的限制。 有一些技术可以在浏览器中进行版本控制（比如使用 remixd 或 DGIT 插件），但这些都是解决浏览器固有限制的方法。
+
+### 使用注入的 Web3 和 Metamask 部署到公共测试网
+**Remix Desktop** 无法访问 Metamask（浏览器插件），因此部署到公共链目前需要使用 Wallet Connect 插件。 相比之下，**Remix IDE - 网络应用程序**可以轻松访问 Metamask 浏览器插件。
+
+## 更新 Remix IDE 和更新 Remix Desktop
+请查看订阅我们的 Twitter feed @EthereumRemix - 这样我们就可以提示您下载最新版本。 Remix Desktop 是 Remix IDE 的包装器，因此 Remix Desktop 将自动获取最新版本的 Remix IDE。 您只需要下载 Remix Desktop 的新版本。 我们还在我们的 gitter 聊天中发布公告：https://gitter.im/ethereum/remix
+
+## 去哪里寻求帮助
+请将您的问题发布到：https://gitter.im/ethereum/remix
+
+## 报告问题
+对于发布问题 - 您可以在 gitter 聊天中提醒我们 - 或者将问题发布到此 repo。
