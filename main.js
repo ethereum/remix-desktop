@@ -5,6 +5,7 @@ const os = require('os')
 const fetch = require('node-fetch')
 const semver = require('semver')
 const config = require('./config')
+const fixPath = require('fix-path')
 
 const { version } = require('./package.json')
 const applicationMenu = require('./applicationMenu')
@@ -148,7 +149,8 @@ function getFolder(client) {
 }
 
 let remixdStart = () => {
-  console.log('start shared folder service')
+  // electron GUI does not inherit the path from the terminal, this is a workaround
+  fixPath()
   try {
     startService('folder', (ws, client) => {
       client.setWebSocket(ws)
