@@ -1,0 +1,19 @@
+pragma solidity >=0.4.22 <0.6.0;
+
+contract sampleContract {
+    function get () public {
+        aLib.doStuff();
+    }
+}
+
+library aLib {
+    function doStuff() public {
+    }
+}
+  /**
+   * @title ContractName
+   * @dev ContractDescription
+   * @custom:dev-run-script file_path
+   */
+  contract SampleContract {}// SPDX-License-Identifier: MIT
+  pragma solidity  ; .learneth/Deploy with Libraries/2_Generate_Metadata/artifacts/build-info/ac569288562b6758fb4611f4922a8da1.json
