@@ -1,5 +1,10 @@
 [![Join the chat at https://gitter.im/ethereum/remix](https://badges.gitter.im/ethereum/remix.svg)](https://gitter.im/ethereum/remix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## DEPRECATED
+
+This release of Remix Desktop is deprecated and will be replaced by a new version which will be available at:
+https://github.com/remix-project-org/remix-desktop
+
 # Remix Desktop
 **Remix Desktop** is an Electron version of Remix IDE.  It works on Linux, Windows, & Macs.
 
