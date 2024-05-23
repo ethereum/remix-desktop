@@ -2,7 +2,7 @@
 
 ## DEPRECATED
 
-This release of Remix Desktop is deprecated and will be replaced by a new version which will be available at:
+This release of Remix Desktop is deprecated and will be replaced by a new version which will be/is available at:
 https://github.com/remix-project-org/remix-desktop
 
 # Remix Desktop
